@@ -1,6 +1,6 @@
 #单元测试  
 ##目的  
-1. 学习Junit,TestNG,Mockito,JMockit    
+1. 学习Junit,TestNG,Mockito,JMockit,MockMvc   
 2. 构建自己的单元测试风格  
 
 ##模块  
