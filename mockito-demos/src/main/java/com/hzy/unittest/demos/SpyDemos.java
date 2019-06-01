@@ -4,6 +4,7 @@ public class SpyDemos {
     public void goHome() {
         doSomeThingA();
         doSomeThingB();
+        doSomePrivateThingA();
     }
     public void doSomeThingB() {
         System.out.println("good day");
@@ -16,5 +17,9 @@ public class SpyDemos {
     public boolean go() {
         System.out.println("I say go go go!!");
         return true;
+    }
+
+    private void doSomePrivateThingA() {
+        System.out.println("private A");
     }
 }
