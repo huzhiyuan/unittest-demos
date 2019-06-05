@@ -10,6 +10,7 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>mockito-demos</module>
+      <module>javabase-demos</module>
   </modules>
 
   <name>unittest-demos</name>
