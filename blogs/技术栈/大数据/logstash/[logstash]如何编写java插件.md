@@ -16,6 +16,21 @@
 logstash源码bin目录下执行:
 > .\gradlew.bat assemble  
 
+> 注: 包括下面的所有gradle命令, 都会存在下载缓慢问题, 解决办法是把所有*.gradle文件里的 mavenCentral()替换下
+```groovy
+buildscript {
+    repositories {
+        //mavenCentral() 卡
+        allprojects {
+            repositories {
+                maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+            }
+        }
+        jcenter()
+    }
+    ...
+}
+```
 会生成文件: $LS_HOME/logstash-core/build/libs/logstash-core-x.y.z.jar
 
 ##二. java插件代码
@@ -31,6 +46,33 @@ logstash源码bin目录下执行:
   LS_HOME=%logstash_root_path%
   
 注意: %%内容替换成你本地的路径 
+
+## 打包
+> 在插件源码目录执行: .\gradlew.bat gem
+
+遇到问题:
+1. task gem not found!
+    > 原因是回退的版本的build.gradle文件少了自动打包的gem函数. 同时牵扯出logstash基础源码少了rubyUtils.gradle 文件. 从最新版本代码
+中复制过来(少什么就复制什么)
+
+## 安装  
+> .\bin\logstash-plugin.bat install --no-verify --local logstash-output-java
+  _output_example-0.0.1.gem
+  
+问题: 
+> ERROR: Something went wrong when installing xxxxxx, message: bad URI(is not URI?): xxxxx
+
+原因: 应该是windows下gem文件路径没写对,要用file:///, 为了简单我直接将gem拷贝到logstash/bin目录下, 执行通过
+
+问题2:
+卡住不动
+
+## 直接运行
+>  .\bin\logstash -p C:\github\bigdata\logstash\logstash-output-java_output_e
+  xample\\ -f C:\github\bigdata\logstash\logstash-output-java_output_example\test.conf
+  
+Couldn't find any output plugin named 'java_output_example
+
 
  
   

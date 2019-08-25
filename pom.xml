@@ -11,6 +11,7 @@
   <modules>
     <module>mockito-demos</module>
       <module>demos</module>
+      <module>bigdata-demos</module>
   </modules>
 
   <name>unittest-demos</name>
